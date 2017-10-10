@@ -13,6 +13,7 @@
  */
 
 // A O(n) solution to find LCA of two given values n1 and n2
+#define CATCH_CONFIG_MAIN
 #include <iostream>
 #include <vector>
 using namespace std;

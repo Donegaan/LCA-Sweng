@@ -6,4 +6,8 @@
 //  Copyright © 2017 Andrew Donegan. All rights reserved.
 //
 
+
+#include "catch.hpp"
+
 #include <stdio.h>
+

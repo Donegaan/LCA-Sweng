@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC284E9F1F8C1BEE00C6BCCD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC284E9E1F8C1BEE00C6BCCD /* main.cpp */; };
-		BCEF8A921F8D15E7008060C4 /* LCA-Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEF8A911F8D15E7008060C4 /* LCA-Test.cpp */; };
+		BCEF8AA01F8D34F8008060C4 /* Testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEF8A9E1F8D34F8008060C4 /* Testing.cpp */; };
+		BCEF8AA71F8D356B008060C4 /* LCA-main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEF8AA51F8D356B008060C4 /* LCA-main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +25,11 @@
 
 /* Begin PBXFileReference section */
 		BC284E9B1F8C1BEE00C6BCCD /* LCA-Sweng */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LCA-Sweng"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC284E9E1F8C1BEE00C6BCCD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		BCEF8A911F8D15E7008060C4 /* LCA-Test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "LCA-Test.cpp"; sourceTree = "<group>"; };
 		BCEF8A931F8D183E008060C4 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
+		BCEF8A9E1F8D34F8008060C4 /* Testing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Testing.cpp; sourceTree = "<group>"; };
+		BCEF8A9F1F8D34F8008060C4 /* Testing.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Testing.hpp; sourceTree = "<group>"; };
+		BCEF8AA51F8D356B008060C4 /* LCA-main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "LCA-main.cpp"; sourceTree = "<group>"; };
+		BCEF8AA61F8D356B008060C4 /* LCA-main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "LCA-main.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,10 @@
 			isa = PBXGroup;
 			children = (
 				BCEF8A931F8D183E008060C4 /* catch.hpp */,
-				BC284E9E1F8C1BEE00C6BCCD /* main.cpp */,
-				BCEF8A911F8D15E7008060C4 /* LCA-Test.cpp */,
+				BCEF8A9F1F8D34F8008060C4 /* Testing.hpp */,
+				BCEF8AA61F8D356B008060C4 /* LCA-main.hpp */,
+				BCEF8A9E1F8D34F8008060C4 /* Testing.cpp */,
+				BCEF8AA51F8D356B008060C4 /* LCA-main.cpp */,
 			);
 			path = "LCA-Sweng";
 			sourceTree = "<group>";
@@ -124,8 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCEF8A921F8D15E7008060C4 /* LCA-Test.cpp in Sources */,
-				BC284E9F1F8C1BEE00C6BCCD /* main.cpp in Sources */,
+				BCEF8AA01F8D34F8008060C4 /* Testing.cpp in Sources */,
+				BCEF8AA71F8D356B008060C4 /* LCA-main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

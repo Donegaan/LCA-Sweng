@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC284E9F1F8C1BEE00C6BCCD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC284E9E1F8C1BEE00C6BCCD /* main.cpp */; };
+		BCEF8A921F8D15E7008060C4 /* LCA-Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEF8A911F8D15E7008060C4 /* LCA-Test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		BC284E9B1F8C1BEE00C6BCCD /* LCA-Sweng */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LCA-Sweng"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC284E9E1F8C1BEE00C6BCCD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BCEF8A911F8D15E7008060C4 /* LCA-Test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "LCA-Test.cpp"; sourceTree = "<group>"; };
+		BCEF8A931F8D183E008060C4 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +60,9 @@
 		BC284E9D1F8C1BEE00C6BCCD /* LCA-Sweng */ = {
 			isa = PBXGroup;
 			children = (
+				BCEF8A931F8D183E008060C4 /* catch.hpp */,
 				BC284E9E1F8C1BEE00C6BCCD /* main.cpp */,
+				BCEF8A911F8D15E7008060C4 /* LCA-Test.cpp */,
 			);
 			path = "LCA-Sweng";
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCEF8A921F8D15E7008060C4 /* LCA-Test.cpp in Sources */,
 				BC284E9F1F8C1BEE00C6BCCD /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,9 +23,7 @@ TEST_CASE("Testing null values for all functions","null"){
     SECTION("Find path of Null"){
         std::vector<int> testPath;
         //To see if it will run with a null value passed as the int value.
-        //
-        //REQUIRE((findPath(testNode, testPath, NULL))==false);
-        //
+        REQUIRE((findPath(testNode, testPath, NULL))==false);
         // To see if it will run with a null value passed as the Node
         REQUIRE((findPath(NULL, testPath, 1))==false);
     }
@@ -36,8 +34,8 @@ TEST_CASE("Testing null values for all functions","null"){
     }
     
     SECTION("Testing to make sure you cannot access or create a null node"){
-        REQUIRE((testNode->key)==NULL);
-        //REQUIRE((newNode(NULL))==NULL);
+        REQUIRE((testNode->key)==NULL); // No key given so it should be NULL.
+        REQUIRE((newNode(NULL))==NULL); // Key given is NULL so it shouldn't create a new node.
     }
 }
 

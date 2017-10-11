@@ -27,6 +27,9 @@ struct Node
 // Utility function creates a new binary tree node with given key
 Node * newNode(int k)
 {
+    if (k==NULL){ // If no int passed
+        return NULL;
+    }
     Node *temp = new Node;
     temp->key = k;
     temp->left = temp->right = NULL;
@@ -38,7 +41,8 @@ Node * newNode(int k)
 bool findPath(Node *root, vector<int> &path, int k)
 {
     // base case
-    if (root == NULL) return false;
+    if (root == NULL || k==NULL) return false;
+    
     
     // Store this node in path vector. The node will be removed if
     // not in path from root to k

@@ -53,5 +53,17 @@ TEST_CASE("Testing successful cases"){
         REQUIRE((findLCA(testNode, 2, 4))==2);
     }
     
+    SECTION("Testing finding a path"){
+        std::vector<int> testPath;
+        // Test when a key is the root's key
+        REQUIRE((findPath(testNode, testPath, 1))==true);
+        // Test if a key is in the right subtree
+        REQUIRE((findPath(testNode, testPath, 3))==true);
+        // Test is a key is in the left subtree
+        REQUIRE((findPath(testNode, testPath, 4))==true);
+    }
+    
 }
+
+//Test case for unsuccessful things that are not null
 

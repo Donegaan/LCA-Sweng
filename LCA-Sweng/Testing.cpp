@@ -62,8 +62,35 @@ TEST_CASE("Testing successful cases"){
         // Test is a key is in the left subtree
         REQUIRE((findPath(testNode, testPath, 4))==true);
     }
-    
 }
 
 //Test case for unsuccessful things that are not null
+TEST_CASE("Testing unsuccessful cases that are not null"){
+    struct Node* testNode = (struct Node*) malloc(sizeof(struct Node));
+    testNode = newNode(1);
+    
+    SECTION("Testing LCA"){
+        //Test LCA of 2 and 3, should be -1
+        REQUIRE((findLCA(testNode, 2, 3))==-1);
+        //Testing LCA of 2 and 4, should be -1
+        REQUIRE((findLCA(testNode, 2, 4))==-1);
+    }
+    
+    SECTION("Testing finding a path"){
+        std::vector<int> testPath;
+        // Test when a key is less than the root's key
+        REQUIRE((findPath(testNode, testPath, 0))==false);
+        // Test if a nonexistent key is in the right subtree with no subtree
+        REQUIRE((findPath(testNode, testPath, 3))==false);
+        // Test is a nonexistent key is in the left subtree with no subtree
+        REQUIRE((findPath(testNode, testPath, 4))==false);
+        testNode->left = newNode(2);
+        testNode->right = newNode(3);
+        //Testing if a nonexistent key is in a right subtree with a right subtree
+        REQUIRE((findPath(testNode, testPath, 4))==false);
+        //Testing if a nonexistent key is in a left subtree with a left subtree
+        REQUIRE((findPath(testNode, testPath, 5))==false);
+        
+    }
+}
 

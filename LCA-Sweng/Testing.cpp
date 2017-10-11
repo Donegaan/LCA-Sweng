@@ -39,3 +39,19 @@ TEST_CASE("Testing null values for all functions","null"){
     }
 }
 
+TEST_CASE("Testing successful cases"){
+    struct Node* testNode = (struct Node*) malloc(sizeof(struct Node));
+    testNode = newNode(1);
+    testNode->left = newNode(2);
+    testNode->right = newNode(3);
+    testNode->left->left = newNode(4);
+    
+    SECTION("Testing LCA"){
+        //Test LCA of 2 and 3, should be 1
+        REQUIRE((findLCA(testNode, 2, 3))==1);
+        //Testing LCA of 2 and 4, should be 2
+        REQUIRE((findLCA(testNode, 2, 4))==2);
+    }
+    
+}
+

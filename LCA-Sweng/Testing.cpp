@@ -75,7 +75,7 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
         //Testing LCA of 2 and 4, should be -1
         REQUIRE((findLCA(testNode, 2, 4))==-1);
     }
-    
+
     SECTION("Testing finding a path"){
         std::vector<int> testPath;
         // Test when a key is less than the root's key
@@ -92,5 +92,8 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
         REQUIRE((findPath(testNode, testPath, 5))==false);
         
     }
+    
+    // Testing the new branch
 }
+
 

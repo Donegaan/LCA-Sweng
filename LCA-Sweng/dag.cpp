@@ -6,110 +6,84 @@
 //  Copyright © 2017 Andrew Donegan. All rights reserved.
 //
 
-//-------
-// Code from: http://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
-//-------
+//------
+// Code from: http://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+//------
 
 #include "dag.hpp"
 
 Graph::Graph(int V)
 {
     this->V = V;
-    adj = new list<AdjListNode>[V];
+    adj = new list<int>[V];
 }
 
-void Graph::addEdge(int u, int v, int weight)
+void Graph::addEdge(int v, int w)
 {
-    AdjListNode node(v, weight);
-    adj[u].push_back(node); // Add v to u's list
+    adj[v].push_back(w); // Add w to v’s list.
 }
 
-// A recursive function used by shortestPath. See below link for details
-// http://www.geeksforgeeks.org/topological-sorting/
-void Graph::topologicalSortUtil(int v, bool visited[], stack<int> &Stack)
+// This function is a variation of DFSUytil() in http://www.geeksforgeeks.org/archives/18212
+bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack)
 {
-    // Mark the current node as visited
-    visited[v] = true;
-    
-    // Recur for all the vertices adjacent to this vertex
-    list<AdjListNode>::iterator i;
-    for (i = adj[v].begin(); i != adj[v].end(); ++i)
+    if(visited[v] == false)
     {
-        AdjListNode node = *i;
-        if (!visited[node.getV()])
-            topologicalSortUtil(node.getV(), visited, Stack);
-    }
-    
-    // Push current vertex to stack which stores topological sort
-    Stack.push(v);
-}
-
-// The function to find shortest paths from given vertex. It uses recursive
-// topologicalSortUtil() to get topological sorting of given graph.
-void Graph::shortestPath(int s)
-{
-    stack<int> Stack;
-    int dist[V];
-    
-    // Mark all the vertices as not visited
-    bool *visited = new bool[V];
-    for (int i = 0; i < V; i++)
-        visited[i] = false;
-    
-    // Call the recursive helper function to store Topological Sort
-    // starting from all vertices one by one
-    for (int i = 0; i < V; i++)
-        if (visited[i] == false)
-            topologicalSortUtil(i, visited, Stack);
-    
-    // Initialize distances to all vertices as infinite and distance
-    // to source as 0
-    for (int i = 0; i < V; i++)
-        dist[i] = INF;
-    dist[s] = 0;
-    
-    // Process vertices in topological order
-    while (Stack.empty() == false)
-    {
-        // Get the next vertex from topological order
-        int u = Stack.top();
-        Stack.pop();
+        // Mark the current node as visited and part of recursion stack
+        visited[v] = true;
+        recStack[v] = true;
         
-        // Update distances of all adjacent vertices
-        list<AdjListNode>::iterator i;
-        if (dist[u] != INF)
+        // Recur for all the vertices adjacent to this vertex
+        list<int>::iterator i;
+        for(i = adj[v].begin(); i != adj[v].end(); ++i)
         {
-            for (i = adj[u].begin(); i != adj[u].end(); ++i)
-                if (dist[i->getV()] > dist[u] + i->getWeight())
-                    dist[i->getV()] = dist[u] + i->getWeight();
+            if ( !visited[*i] && isCyclicUtil(*i, visited, recStack) )
+                return true;
+            else if (recStack[*i])
+                return true;
         }
+        
     }
-    
-    // Print the calculated shortest distances
-    for (int i = 0; i < V; i++)
-        (dist[i] == INF)? cout << "INF ": cout << dist[i] << " ";
+    recStack[v] = false;  // remove the vertex from recursion stack
+    return false;
 }
 
-// Driver program to test above functions
+// Returns true if the graph contains a cycle, else false.
+// This function is a variation of DFS() in http://www.geeksforgeeks.org/archives/18212
+bool Graph::isCyclic()
+{
+    // Mark all the vertices as not visited and not part of recursion
+    // stack
+    bool *visited = new bool[V];
+    bool *recStack = new bool[V];
+    for(int i = 0; i < V; i++)
+    {
+        visited[i] = false;
+        recStack[i] = false;
+    }
+    
+    // Call the recursive helper function to detect cycle in different
+    // DFS trees
+    for(int i = 0; i < V; i++)
+        if (isCyclicUtil(i, visited, recStack))
+            return true;
+    
+    return false;
+}
+
 int main()
 {
-    // Create a graph given in the above diagram.  Here vertex numbers are
-    // 0, 1, 2, 3, 4, 5 with following mappings:
-    // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
-    Graph g(6);
-    g.addEdge(0, 1, 5);
-    g.addEdge(0, 2, 3);
-    g.addEdge(1, 3, 6);
-    g.addEdge(1, 2, 2);
-    g.addEdge(2, 4, 4);
-    g.addEdge(2, 5, 2);
-    g.addEdge(2, 3, 7);
-    g.addEdge(3, 4, -1);
-    g.addEdge(4, 5, -2);
+    // Create a graph given in the above diagram
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+    g.addEdge(3, 3);
     
-    int s = 1;
-    cout << "Following are shortest distances from source " << s <<" n";
-    g.shortestPath(s);
-    
+    if(g.isCyclic())
+        cout << "Graph contains cycle";
+    else
+        cout << "Graph doesn't contain cycle";
     return 0;
 }

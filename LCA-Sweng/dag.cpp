@@ -15,71 +15,44 @@
 Graph::Graph(int V)
 {
     this->V = V;
-    adj = new list<int>[V];
+    adj = new list<AdjListNode>[V];
 }
 
-void Graph::addEdge(int v, int w)
+void Graph::addEdge(int x, int y, int w)
 {
-    adj[v].push_back(w); // Add w to v’s list.
+    AdjListNode node(y,w);
+    adj[x].push_back(node); // Add w to v’s list.
 }
 
-// This function is a variation of DFSUytil() in http://www.geeksforgeeks.org/archives/18212
-bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack)
-{
-    if(visited[v] == false)
-    {
-        // Mark the current node as visited and part of recursion stack
-        visited[v] = true;
-        recStack[v] = true;
-        
-        // Recur for all the vertices adjacent to this vertex
-        list<int>::iterator i;
-        for(i = adj[v].begin(); i != adj[v].end(); ++i)
-        {
-            if ( !visited[*i] && isCyclicUtil(*i, visited, recStack) )
-                return true;
-            else if (recStack[*i])
-                return true;
-        }
-        
-    }
-    recStack[v] = false;  // remove the vertex from recursion stack
-    return false;
-}
-
-// Returns true if the graph contains a cycle, else false.
-// This function is a variation of DFS() in http://www.geeksforgeeks.org/archives/18212
 bool Graph::isCyclic()
 {
-    // Mark all the vertices as not visited and not part of recursion
-    // stack
-    bool *visited = new bool[V];
-    bool *recStack = new bool[V];
-    for(int i = 0; i < V; i++)
-    {
-        visited[i] = false;
-        recStack[i] = false;
+    list<AdjListNode>::iterator iter; // This is the stating node, this function goes through each node, it compares adjacent node keys
+    
+    for(int i=1;i<=V;i++){
+        for(iter=adj[i].begin(); iter != adj[i].end(); ++iter){
+            int tmp=iter->getV();
+            if(tmp==0) // If the nodes key is the same as root (0) then there is a cycle.
+                return true;
+        }
     }
-    
-    // Call the recursive helper function to detect cycle in different
-    // DFS trees
-    for(int i = 0; i < V; i++)
-        if (isCyclicUtil(i, visited, recStack))
-            return true;
-    
     return false;
 }
+
 
 int main()
 {
     // Create a graph given in the above diagram
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 0);
-    g.addEdge(2, 3);
-    g.addEdge(3, 3);
+    Graph g(7);
+    g.addEdge(0, 1, 5);
+    g.addEdge(0, 2, 3);
+    g.addEdge(1, 3, 6);
+    g.addEdge(1, 2, 2);
+    g.addEdge(2, 4, 4);
+    g.addEdge(2, 5, 2);
+    g.addEdge(2, 3, 7);
+    g.addEdge(3, 4, -1);
+    g.addEdge(4, 5, -2);
+    g.addEdge(5, 6, 3);
     
     if(g.isCyclic())
         cout << "Graph contains cycle";

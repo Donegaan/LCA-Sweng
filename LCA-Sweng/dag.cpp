@@ -38,6 +38,26 @@ bool Graph::isCyclic()
     return false;
 }
 
+stack<int> Graph:: path(int nodeKey,stack<int> &Stack,int position){ // Gets node and pushes the value onto the stack.
+    //Stack is the route being search through.
+    list<AdjListNode>:: iterator iter; // Reference to first node
+    stack<int> pathStack = Stack;
+    
+    // Iterate through all nodes and their array of vertices
+    for(iter=adj[position].begin();iter!=adj[position].end();++iter){
+        int tempKey=iter->getV(); // Key of current node
+        if(nodeKey==tempKey){ // If we found the nodeKey we are looking for
+            pathStack.push(tempKey);
+            return pathStack;
+        }else{
+            pathStack.push(tempKey);
+            return path(nodeKey, pathStack, tempKey);
+        }
+    }
+    return Stack;
+}
+
+
 
 int main()
 {

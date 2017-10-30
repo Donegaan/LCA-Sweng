@@ -23,20 +23,6 @@ struct Node
     int key;
     struct Node *left, *right;
 };
-// Stack code taken from: http://www.programming-techniques.com/2012/07/depth-first-search-in-c-algorithm-and.html
-class stack{
-    struct node *top;
-    public:
-    stack();
-    void push(int);
-    int pop();
-    bool isEmpty();
-    void display();
-};
-
-stack::stack(){
-    top = NULL;
-} 
 
 // Utility function creates a new binary tree node with given key
 Node * newNode(int k)
@@ -50,13 +36,15 @@ Node * newNode(int k)
     return temp;
 }
 
+
+
+
 // Finds the path from root node to given root of the tree, Stores the
 // path in a vector path[], returns true if path exists otherwise false
 bool findPath(Node *root, vector<int> &path, int k)
 {
     // base case
     if (root == NULL || k==NULL) return false;
-    
     
     // Store this node in path vector. The node will be removed if
     // not in path from root to k
@@ -96,6 +84,7 @@ int findLCA(Node *root, int n1, int n2)
             break;
     return path1[i-1];
 }
+
 
 
 

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andrew Donegan. All rights reserved.
 //
 
-#include "Testing.hpp"
+//#include "Testing.hpp"
 #include "LCA-main.hpp"
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"

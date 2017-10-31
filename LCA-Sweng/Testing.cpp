@@ -6,7 +6,6 @@
 //  Copyright © 2017 Andrew Donegan. All rights reserved.
 //
 
-//#include "Testing.hpp"
 #include "LCA-main.hpp"
 #include "dag.hpp"
 #define CATCH_CONFIG_MAIN
@@ -20,7 +19,7 @@
 
 TEST_CASE("Testing null values for all functions","null"){
     struct Node* testNode = (struct Node*) malloc(sizeof(struct Node));
-    
+
     SECTION("Find path of Null"){
         std::vector<int> testPath;
         //To see if it will run with a null value passed as the int value.
@@ -28,12 +27,12 @@ TEST_CASE("Testing null values for all functions","null"){
         // To see if it will run with a null value passed as the Node
         REQUIRE((findPath(NULL, testPath, 1))==false);
     }
-    
+
     SECTION("Testing the LCA with a null value"){
         // NULL node
         REQUIRE((findLCA(NULL, 6, 2))==-1);
     }
-    
+
     SECTION("Testing to make sure you cannot access or create a null node"){
         REQUIRE((testNode->key)==NULL); // No key given so it should be NULL.
         REQUIRE((newNode(NULL))==NULL); // Key given is NULL so it shouldn't create a new node.
@@ -46,14 +45,14 @@ TEST_CASE("Testing successful cases"){
     testNode->left = newNode(2);
     testNode->right = newNode(3);
     testNode->left->left = newNode(4);
-    
+
     SECTION("Testing LCA"){
         //Test LCA of 2 and 3, should be 1
         REQUIRE((findLCA(testNode, 2, 3))==1);
         //Testing LCA of 2 and 4, should be 2
         REQUIRE((findLCA(testNode, 2, 4))==2);
     }
-    
+
     SECTION("Testing finding a path"){
         std::vector<int> testPath;
         // Test when a key is the root's key
@@ -69,7 +68,7 @@ TEST_CASE("Testing successful cases"){
 TEST_CASE("Testing unsuccessful cases that are not null"){
     struct Node* testNode = (struct Node*) malloc(sizeof(struct Node));
     testNode = newNode(1);
-    
+
     SECTION("Testing LCA"){
         //Test LCA of 2 and 3, should be -1
         REQUIRE((findLCA(testNode, 2, 3))==-1);
@@ -91,9 +90,9 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
         REQUIRE((findPath(testNode, testPath, 4))==false);
         //Testing if a nonexistent key is in a left subtree with a left subtree
         REQUIRE((findPath(testNode, testPath, 5))==false);
-        
+
     }
-    
+
 }
 
 //-----------
@@ -101,7 +100,7 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
 //-----------
 
 TEST_CASE("Testing Directed Acyclic Graph"){
-    
+
     Graph g(7);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
@@ -109,12 +108,28 @@ TEST_CASE("Testing Directed Acyclic Graph"){
     g.addEdge(1, 2);
     g.addEdge(2, 4);
     g.addEdge(2, 5);
-    
+
     SECTION("Checking for cycle"){
         REQUIRE(g.isCyclic()==false); // Shows thats the graph does not have a cycle
     }
 
+    SECTION("Checking LCA of nodes"){
+        REQUIRE(g.LCA(0, 2)==0);
+        REQUIRE(g.LCA(1, 2)==1);
+        REQUIRE(g.LCA(2, 5)==2);
+        REQUIRE(g.LCA(5, 2)==-1);
+    }
+    
+    
+    
+    g.addEdge(2, 0); // To create a cycle
+    SECTION("Checking for existing cycle"){
+        REQUIRE(g.isCyclic());
+    }
+
 }
+
+
 
 
 

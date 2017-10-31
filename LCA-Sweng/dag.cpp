@@ -105,7 +105,7 @@ int Graph::LCA(int num1, int num2){
 //        cout << "Graph contains cycle";
 //    else
 //        cout << "Graph doesn't contain cycle ";
-//    cout<<g.LCA(6, 7);
+//    cout<<g.LCA(1, 2);
 //
 //    return 0;
 //}

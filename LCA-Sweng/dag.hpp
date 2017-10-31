@@ -21,11 +21,9 @@ using namespace std;
 class AdjListNode
 {
     int v;
-    int weight;
 public:
-    AdjListNode(int _v, int _w)  { v = _v;  weight = _w;}
+    AdjListNode(int _v)  { v = _v;}
     int getV()       {  return v;  }
-    int getWeight()  {  return weight; }
 };
 
 class Graph
@@ -35,7 +33,7 @@ class Graph
     bool isCyclicUtil(int v, bool visited[], bool *rs);  // used by isCyclic()
 public:
     Graph(int V);   // Constructor
-    void addEdge(int x, int y, int w);   // to add an edge to graph, x = vertex number, y= value, w=weight
+    void addEdge(int x, int y);   // to add an edge to graph, x = vertex number, y= value
     bool isCyclic();    // returns true if there is a cycle in this graph
     stack<int> path(int nodeKey,stack<int> &Stack,int position); // Returns true if there is a path between two given nodes.
     int LCA(int num1, int num2); // Finds the lowest common ancestor of two given nodes in graph.

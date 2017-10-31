@@ -7,7 +7,7 @@
 //
 
 //------
-// Code from: http://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+// Code from: http://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
 //------
 
 #include "dag.hpp"
@@ -18,9 +18,9 @@ Graph::Graph(int V)
     adj = new list<AdjListNode>[V];
 }
 
-void Graph::addEdge(int x, int y, int w)
+void Graph::addEdge(int x, int y)
 {
-    AdjListNode node(y,w);
+    AdjListNode node(y);
     adj[x].push_back(node); // Add w to v’s list.
 }
 
@@ -61,8 +61,10 @@ int Graph::LCA(int num1, int num2){
     
     if (!isCyclic()){
         for (int i=0;i<V;i++){
-            stack<int>path1 = path(num1,path1,0);// Paths for nodes passed in
-            stack<int>path2 = path(num2,path2,0);
+            stack<int>path1;// Paths for nodes passed in
+            stack<int>path2;
+            path1 = path(num1,path1,0);
+            path2 = path(num2,path2,0);
             while (!path1.empty()) {
                 int topP1=path1.top(); // Gets top of the first path
                 while (!path2.empty()) {
@@ -79,24 +81,31 @@ int Graph::LCA(int num1, int num2){
 }
 
 
-int main()
-{
-    // Create a graph given in the above diagram
-    Graph g(7);
-    g.addEdge(0, 1, 5);
-    g.addEdge(0, 2, 3);
-    g.addEdge(1, 3, 6);
-    g.addEdge(1, 2, 2);
-    g.addEdge(2, 4, 4);
-    g.addEdge(2, 5, 2);
-    g.addEdge(2, 3, 7);
-    g.addEdge(3, 4, -1);
-    g.addEdge(4, 5, -2);
-    g.addEdge(5, 6, 3);
-    
-    if(g.isCyclic())
-        cout << "Graph contains cycle";
-    else
-        cout << "Graph doesn't contain cycle";
-    return 0;
-}
+
+
+//int main()
+//{
+//
+//    // 0, 1, 2, 3, 4, 5 with following mappings:
+//    // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
+//    Graph g(7);
+//    g.addEdge(0, 1);
+//    g.addEdge(0, 2);
+//    g.addEdge(1, 3);
+//    g.addEdge(1, 2);
+//    g.addEdge(2, 4);
+//    g.addEdge(2, 5);
+//    g.addEdge(2, 3);
+//    g.addEdge(3, 4);
+//    g.addEdge(4, 5);
+//    g.addEdge(5, 6);
+//
+//    if(g.isCyclic())
+//        cout << "Graph contains cycle";
+//    else
+//        cout << "Graph doesn't contain cycle ";
+//    cout<<g.LCA(5, 6);
+//
+//    return 0;
+//}
+

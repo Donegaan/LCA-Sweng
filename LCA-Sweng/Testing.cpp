@@ -100,5 +100,22 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
 //DAG tests
 //-----------
 
-TEST_CASE(<#...#>)
+TEST_CASE("Testing Directed Acyclic Graph"){
+    
+    Graph g(7);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 3);
+    g.addEdge(1, 2);
+    g.addEdge(2, 4);
+    g.addEdge(2, 5);
+    
+    SECTION("Checking for cycle"){
+        REQUIRE(g.isCyclic()==false); // Shows thats the graph does not have a cycle
+    }
+    
+    
+
+}
+
 

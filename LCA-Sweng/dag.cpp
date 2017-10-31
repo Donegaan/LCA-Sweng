@@ -30,31 +30,36 @@ bool Graph::isCyclic()
     
     for(int i=1;i<=V;i++){
         for(iter=adj[i].begin(); iter != adj[i].end(); ++iter){
-            int tmp=iter->getV();
-            if(tmp==0) // If the nodes key is the same as root (0) then there is a cycle.
+            int temp=iter->getV();
+            if(temp==0) // If the nodes key is the same as root (0) then there is a cycle.
                 return true;
         }
     }
     return false;
 }
 
-stack<int> Graph:: path(int nodeKey,stack<int> &Stack,int position){ // Gets node and pushes the value onto the stack.
+stack<int> Graph:: path(int nodeKey,stack<int> &adjStack,int position){ // Gets node and pushes nodes in adjacency list onto the stack.
     //Stack is the route being search through.
-    list<AdjListNode>:: iterator iter; // Reference to first node
-    stack<int> pathStack = Stack;
-    
-    // Iterate through all nodes and their array of vertices
+    if(position<0||nodeKey<0){//cannot have negative nodes so an error is returned
+        adjStack.push(-1);
+        return adjStack;
+    }
+    if(position==nodeKey||position==V-1){//if node is found or tree has been searched return stack with found node
+        adjStack.push(position);
+        return adjStack;
+    }
+    stack<int> pathStack = adjStack;
+    list<AdjListNode>::iterator iter;
+    pathStack.push(position);
+    //goes through all the nodes adjList which is a list of the nodes its connected to
     for(iter=adj[position].begin();iter!=adj[position].end();++iter){
-        int tempKey=iter->getV(); // Key of current node
-        if(nodeKey==tempKey){ // Found the nodeKey we are looking for
-            pathStack.push(tempKey);
-            return pathStack;
-        }else{
-            pathStack.push(tempKey);
-            return path(nodeKey, pathStack, tempKey);
+        stack<int> temp=path(nodeKey, pathStack,iter->getV());
+        if(temp.top()==nodeKey){//if the key is at the top of the stack return it
+            return temp;
         }
     }
-    return Stack;
+    return pathStack;
+    
 }
 
 int Graph::LCA(int num1, int num2){
@@ -88,23 +93,19 @@ int Graph::LCA(int num1, int num2){
 //
 //    // 0, 1, 2, 3, 4, 5 with following mappings:
 //    // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
-//    Graph g(7);
+//    Graph g(5);
 //    g.addEdge(0, 1);
 //    g.addEdge(0, 2);
 //    g.addEdge(1, 3);
 //    g.addEdge(1, 2);
 //    g.addEdge(2, 4);
 //    g.addEdge(2, 5);
-//    g.addEdge(2, 3);
-//    g.addEdge(3, 4);
-//    g.addEdge(4, 5);
-//    g.addEdge(5, 6);
 //
 //    if(g.isCyclic())
 //        cout << "Graph contains cycle";
 //    else
 //        cout << "Graph doesn't contain cycle ";
-//    cout<<g.LCA(5, 6);
+//    cout<<g.LCA(6, 7);
 //
 //    return 0;
 //}

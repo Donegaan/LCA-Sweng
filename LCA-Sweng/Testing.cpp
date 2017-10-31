@@ -113,9 +113,8 @@ TEST_CASE("Testing Directed Acyclic Graph"){
     SECTION("Checking for cycle"){
         REQUIRE(g.isCyclic()==false); // Shows thats the graph does not have a cycle
     }
-    
-    
 
 }
+
 
 

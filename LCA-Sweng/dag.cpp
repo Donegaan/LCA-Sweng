@@ -46,7 +46,7 @@ stack<int> Graph:: path(int nodeKey,stack<int> &Stack,int position){ // Gets nod
     // Iterate through all nodes and their array of vertices
     for(iter=adj[position].begin();iter!=adj[position].end();++iter){
         int tempKey=iter->getV(); // Key of current node
-        if(nodeKey==tempKey){ // If we found the nodeKey we are looking for
+        if(nodeKey==tempKey){ // Found the nodeKey we are looking for
             pathStack.push(tempKey);
             return pathStack;
         }else{
@@ -57,6 +57,26 @@ stack<int> Graph:: path(int nodeKey,stack<int> &Stack,int position){ // Gets nod
     return Stack;
 }
 
+int Graph::LCA(int num1, int num2){
+    
+    if (!isCyclic()){
+        for (int i=0;i<V;i++){
+            stack<int>path1 = path(num1,path1,0);// Paths for nodes passed in
+            stack<int>path2 = path(num2,path2,0);
+            while (!path1.empty()) {
+                int topP1=path1.top(); // Gets top of the first path
+                while (!path2.empty()) {
+                    if(topP1==path2.top()){
+                        return topP1;   // This returns lowest common ancestor
+                    }
+                    path2.pop(); // take top off of stack
+                }
+                path1.pop();
+            }
+        }
+    }
+    return -1;
+}
 
 
 int main()

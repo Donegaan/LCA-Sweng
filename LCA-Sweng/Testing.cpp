@@ -8,6 +8,7 @@
 
 //#include "Testing.hpp"
 #include "LCA-main.hpp"
+#include "dag.hpp"
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include <iostream>
@@ -95,4 +96,9 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
     
 }
 
+//-----------
+//DAG tests
+//-----------
+
+TEST_CASE(<#...#>)
 

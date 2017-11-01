@@ -155,7 +155,7 @@ TEST_CASE("Testting LCA"){
         REQUIRE(g.LCA(1, 2)==1);
         REQUIRE(g.LCA(2, 5)==2);
         REQUIRE(g.LCA(5, 2)==-1);
-        REQUIRE(g.LCA(10, 11)==-1); // Doesn't exits
+        REQUIRE(g.LCA(10, 11)==-1); // Doesn't exist
     }
 }
 

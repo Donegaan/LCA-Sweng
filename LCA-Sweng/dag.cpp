@@ -28,7 +28,7 @@ bool Graph::isCyclic()
 {
     list<AdjListNode>::iterator iter; // This is the stating node, this function goes through each node, it compares adjacent node keys
     
-    for(int i=1;i<=V;i++){
+    for(int i=0;i<V;i++){
         for(iter=adj[i].begin(); iter != adj[i].end(); ++iter){
             int temp=iter->getV();
             if(temp==0) // If the nodes key is the same as root (0) then there is a cycle.
@@ -39,7 +39,7 @@ bool Graph::isCyclic()
 }
 
 stack<int> Graph:: path(int nodeKey,stack<int> &adjStack,int position){ // Gets node and pushes nodes in adjacency list onto the stack.
-    //Stack is the route being search through.
+    //Stack is the route being searched through.
     if(position<0||nodeKey<0){//cannot have negative nodes so an error is returned
         adjStack.push(-1);
         return adjStack;
@@ -59,12 +59,11 @@ stack<int> Graph:: path(int nodeKey,stack<int> &adjStack,int position){ // Gets 
         }
     }
     return pathStack;
-    
 }
 
 int Graph::LCA(int num1, int num2){
     
-    if (!isCyclic()){
+    if (!isCyclic() && num1<=V && num2<=V){ // If nodes are greater than V they don't exist so return -1.
         for (int i=0;i<V;i++){
             stack<int>path1;// Paths for nodes passed in
             stack<int>path2;
@@ -85,28 +84,4 @@ int Graph::LCA(int num1, int num2){
     return -1;
 }
 
-
-
-
-//int main()
-//{
-//
-//    // 0, 1, 2, 3, 4, 5 with following mappings:
-//    // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
-//    Graph g(5);
-//    g.addEdge(0, 1);
-//    g.addEdge(0, 2);
-//    g.addEdge(1, 3);
-//    g.addEdge(1, 2);
-//    g.addEdge(2, 4);
-//    g.addEdge(2, 5);
-//
-//    if(g.isCyclic())
-//        cout << "Graph contains cycle";
-//    else
-//        cout << "Graph doesn't contain cycle ";
-//    cout<<g.LCA(1, 2);
-//
-//    return 0;
-//}
 

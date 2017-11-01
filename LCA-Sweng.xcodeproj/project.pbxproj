@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC492EC61FA9E64E002993D2 /* Testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC492EC51FA9E64E002993D2 /* Testing.cpp */; };
 		BCDCE2781FA76AB3006937C4 /* dag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCDCE2761FA76AB3006937C4 /* dag.cpp */; };
-		BCEF8AA01F8D34F8008060C4 /* Testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEF8A9E1F8D34F8008060C4 /* Testing.cpp */; };
 		BCEF8AA71F8D356B008060C4 /* LCA-main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEF8AA51F8D356B008060C4 /* LCA-main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -26,10 +26,10 @@
 
 /* Begin PBXFileReference section */
 		BC284E9B1F8C1BEE00C6BCCD /* LCA-Sweng */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LCA-Sweng"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC492EC51FA9E64E002993D2 /* Testing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Testing.cpp; sourceTree = "<group>"; };
 		BCDCE2761FA76AB3006937C4 /* dag.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dag.cpp; sourceTree = "<group>"; };
 		BCDCE2771FA76AB3006937C4 /* dag.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dag.hpp; sourceTree = "<group>"; };
 		BCEF8A931F8D183E008060C4 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
-		BCEF8A9E1F8D34F8008060C4 /* Testing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Testing.cpp; sourceTree = "<group>"; };
 		BCEF8AA51F8D356B008060C4 /* LCA-main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "LCA-main.cpp"; sourceTree = "<group>"; };
 		BCEF8AA61F8D356B008060C4 /* LCA-main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "LCA-main.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,7 +66,7 @@
 			children = (
 				BCEF8A931F8D183E008060C4 /* catch.hpp */,
 				BCEF8AA61F8D356B008060C4 /* LCA-main.hpp */,
-				BCEF8A9E1F8D34F8008060C4 /* Testing.cpp */,
+				BC492EC51FA9E64E002993D2 /* Testing.cpp */,
 				BCDCE2761FA76AB3006937C4 /* dag.cpp */,
 				BCDCE2771FA76AB3006937C4 /* dag.hpp */,
 				BCEF8AA51F8D356B008060C4 /* LCA-main.cpp */,
@@ -132,7 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCDCE2781FA76AB3006937C4 /* dag.cpp in Sources */,
-				BCEF8AA01F8D34F8008060C4 /* Testing.cpp in Sources */,
+				BC492EC61FA9E64E002993D2 /* Testing.cpp in Sources */,
 				BCEF8AA71F8D356B008060C4 /* LCA-main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

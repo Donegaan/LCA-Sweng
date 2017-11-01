@@ -99,9 +99,9 @@ TEST_CASE("Testing unsuccessful cases that are not null"){
 //DAG tests
 //-----------
 
-TEST_CASE("Testing Directed Acyclic Graph"){
+TEST_CASE("Testing if graph is cyclic"){
 
-    Graph g(7);
+    Graph g(6);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
     g.addEdge(1, 3);
@@ -113,20 +113,50 @@ TEST_CASE("Testing Directed Acyclic Graph"){
         REQUIRE(g.isCyclic()==false); // Shows thats the graph does not have a cycle
     }
 
-    SECTION("Checking LCA of nodes"){
-        REQUIRE(g.LCA(0, 2)==0);
-        REQUIRE(g.LCA(1, 2)==1);
-        REQUIRE(g.LCA(2, 5)==2);
-        REQUIRE(g.LCA(5, 2)==-1);
-    }
-    
-    
     
     g.addEdge(2, 0); // To create a cycle
     SECTION("Checking for existing cycle"){
         REQUIRE(g.isCyclic());
     }
+}
 
+
+TEST_CASE("Test path"){
+    
+    Graph g(6);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 3);
+    g.addEdge(1, 2);
+    g.addEdge(2, 4);
+    g.addEdge(2, 5);
+    
+    SECTION("Path of existing Nodes"){
+        stack<int>stack;
+        stack = g.path(0, stack, 0);
+        REQUIRE(stack.top()==0);
+        stack = g.path(2, stack, 0);
+        REQUIRE(stack.top()==2);
+    }
+}
+
+TEST_CASE("Testting LCA"){
+    
+    Graph g(6);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 3);
+    g.addEdge(1, 2);
+    g.addEdge(2, 4);
+    g.addEdge(2, 5);
+    
+    SECTION("Checking LCA of nodes"){
+        REQUIRE(g.LCA(0, 2)==0);
+        REQUIRE(g.LCA(1, 2)==1);
+        REQUIRE(g.LCA(2, 5)==2);
+        REQUIRE(g.LCA(5, 2)==-1);
+        REQUIRE(g.LCA(10, 11)==-1); // Doesn't exits
+    }
 }
 
 
